@@ -1,7 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { StudentsComponent } from './components/students/students.component';
+import { AddStudentComponent } from './components/add-student/add-student.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { ErrorComponent } from './components/error/error.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: HomeComponent }, // default page
+  { path: 'home', component: HomeComponent },
+  { path: 'students', component: StudentsComponent },
+  { path: 'add-student', component: AddStudentComponent },
+  { path: 'student/:id', component: StudentDetailsComponent },
+  { path: '**', component: ErrorComponent }
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
