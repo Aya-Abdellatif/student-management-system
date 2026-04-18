@@ -1,1 +1,144 @@
-<p>add-student works!</p>
+<!-- add-student.component.html -->
+<div class="page-wrapper fade-in-up">
+
+    <!-- Page Header -->
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <button class="btn-icon-sm btn-icon-view" title="Go back">←</button>
+        <div>
+            <h2 class="font-heading mb-0" style="font-size: 20px; font-weight: 700;">Add New Student</h2>
+            <p class="text-muted-sms mb-0" style="font-size: 13px;">Fill in the form below to register a new student</p>
+        </div>
+    </div>
+
+    <form>
+        <div class="sms-card">
+
+            <!-- Section: Personal Info -->
+            <div class="card-header-bar">
+                <p class="card-title">👤 Personal Information</p>
+            </div>
+
+            <div class="form-section">
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <label class="form-label">First Name <span style="color:var(--danger)">*</span></label>
+                        <input type="text" class="form-control" placeholder="e.g. Sara" formControlName="firstName">
+                        <div class="invalid-feedback">First name is required.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Last Name <span style="color:var(--danger)">*</span></label>
+                        <input type="text" class="form-control" placeholder="e.g. Rahman" formControlName="lastName">
+                        <div class="invalid-feedback">Last name is required.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Email Address <span style="color:var(--danger)">*</span></label>
+                        <input type="email" class="form-control" placeholder="student@university.edu"
+                            formControlName="email">
+                        <div class="invalid-feedback">Valid email address is required.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" placeholder="+1 (555) 000-0000" formControlName="phone">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" formControlName="dateOfBirth">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" formControlName="gender">
+                            <option value="" disabled>Select gender...</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Prefer not to say</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" placeholder="Enter full address..."
+                            formControlName="address">
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Section: Academic Info -->
+            <div class="card-header-bar" style="border-top: 1px solid var(--border-light);">
+                <p class="card-title">🎓 Academic Information</p>
+            </div>
+
+            <div class="form-section">
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <label class="form-label">Course / Major <span style="color:var(--danger)">*</span></label>
+                        <select class="form-select" formControlName="course">
+                            <option value="" disabled>Select course...</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="ba">Business Administration</option>
+                            <option value="ds">Data Science</option>
+                            <option value="eng">Engineering</option>
+                            <option value="psy">Psychology</option>
+                            <option value="math">Mathematics</option>
+                            <option value="med">Medicine</option>
+                        </select>
+                        <div class="invalid-feedback">Please select a course.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Year of Study <span style="color:var(--danger)">*</span></label>
+                        <select class="form-select" formControlName="year" >
+                            <option value="" disabled>Select year...</option>
+                            <option value="1">Year 1</option>
+                            <option value="2">Year 2</option>
+                            <option value="3">Year 3</option>
+                            <option value="4">Year 4</option>
+                            <option value="5">Year 5 (Postgrad)</option>
+                        </select>
+                        <div class="invalid-feedback">Please select a year.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Enrollment Date</label>
+                        <input type="date" class="form-control" formControlName="enrollmentDate">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" formControlName="status">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Pending">Pending Review</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Additional Notes</label>
+                        <textarea class="form-control" rows="3"
+                            placeholder="Any additional information about the student..."
+                            formControlName="notes"></textarea>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="form-footer">
+                <button type="button" class="btn-sms-outline" >Cancel</button>
+                <button type="submit" class="btn-sms-primary" >
+                    <span >Saving...</span>
+                    <span >Save Student →</span>
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+</div>
