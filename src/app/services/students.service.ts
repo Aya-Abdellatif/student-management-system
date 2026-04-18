@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class StudentsService {
 
-  // dummy data
   private students = [
     {
       id: 1,
@@ -32,4 +31,22 @@ export class StudentsService {
   students$ = this.studentsSubject.asObservable();
 
   constructor() { }
+
+  addStudent(student: any) {
+    const curr = this.studentsSubject.value;
+    console.log(curr);
+
+    student.id = curr.length + 1;
+
+    this.studentsSubject.next([...curr, student]);
+  }
+
+  deleteStudent(id: number) {
+    const afterDeleteStudent = this.studentsSubject.value.filter(s => s.id !== id);
+
+    this.studentsSubject.next(afterDeleteStudent);
+  }
+  getStudentByID(id: number) {
+    return this.studentsSubject.value.find(s => s.id === id);
+  }
 }
