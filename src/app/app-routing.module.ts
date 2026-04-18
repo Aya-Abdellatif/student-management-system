@@ -7,7 +7,7 @@ import { StudentDetailsComponent } from './components/student-details/student-de
 import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent }, // default page
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'students', component: StudentsComponent },
   { path: 'add-student', component: AddStudentComponent },
