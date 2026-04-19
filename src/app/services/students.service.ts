@@ -46,7 +46,16 @@ export class StudentsService {
 
     this.studentsSubject.next(afterDeleteStudent);
   }
+
   getStudentByID(id: number) {
     return this.studentsSubject.value.find(s => s.id === id);
+  }
+
+  editStudent(student: any) {
+    const updatedStudent = this.studentsSubject.value.map(s =>
+      s.id === student.id ? student : s
+    );
+
+    this.studentsSubject.next(updatedStudent);
   }
 }
