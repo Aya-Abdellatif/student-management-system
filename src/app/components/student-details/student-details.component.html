@@ -1,1 +1,129 @@
-<h1>hi</h1>
+<div class="page-wrapper fade-in-up" *ngIf="student">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn-icon-sm btn-icon-view" routerLink="/students" title="Back">←</button>
+            <div>
+                <h2 class="font-heading mb-0" style="font-size: 20px; font-weight: 700;">{{student.firstName}} Profile
+                </h2>
+                <p class="text-muted-sms mb-0" style="font-size: 13px;">Detailed view and academic record</p>
+            </div>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn-sms-outline" [routerLink]="['/edit-student', student.id]"
+                style="font-size: 13px; padding: 8px 16px;">
+                📝 Edit
+            </button>
+            <button class="btn-sms-danger" style="font-size: 13px; padding: 8px 16px;" (click)="onDelete()">
+                🗑 Delete
+            </button>
+        </div>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="row g-4" style="--bs-gutter-x: 20px;">
+
+        <!-- LEFT: Profile sidebar -->
+        <div class="col-lg-3">
+            <div class="profile-card">
+
+                <!-- Avatar -->
+                <div class="profile-avatar-xl"> {{ student.firstName.charAt(0) }} {{ student.lastName.charAt(0) }}
+                </div>
+                <p class="profile-name">{{ student.firstName }} {{ student.lastName }}</p>
+                <p class="profile-sub">{{ student.course }} · Year {{ student.level }}</p>
+                <span class="sms-badge" [ngClass]="{
+                'badge-active':   student.isActive === true,
+                'badge-inactive': student.isActive === false,
+              }">
+                    {{ student.isActive ? 'Active' : 'Inactive' }}
+                </span>
+
+                <div class="profile-divider"></div>
+
+                <!-- Info rows -->
+                <div class="profile-row">
+                    <span class="profile-row-label">Student ID</span>
+                    <span class="profile-row-val">{{ student.id }}</span>
+                </div>
+                <div class="profile-row">
+                    <span class="profile-row-label">GPA</span>
+                    <span class="profile-row-val fw-700 text-primary-color">{{ student.GPA }}</span>
+                </div>
+                <div class="profile-row">
+                    <span class="profile-row-label">Enrolled</span>
+                    <span class="profile-row-val">{{ student.enrollmentDate }}</span>
+                </div>
+                <div class="profile-row">
+                    <span class="profile-row-label">
+                        Age
+                    </span>
+                    <span class="profile-row-val">{{ student.age }}</span>
+                </div>
+                <div class="profile-row">
+                    <span class="profile-row-label">Phone</span>
+                    <span class="profile-row-val">{{ student.phone }}</span>
+                </div>
+
+                <div class="profile-divider"></div>
+
+                <div class="profile-row">
+                    <span class="profile-row-label">Email</span>
+                </div>
+                <p
+                    style="font-size: 12.5px; color: var(--primary); word-break: break-all; text-align: left; margin: 2px 0 0;">
+                    {{ student.email }}
+                </p>
+
+            </div>
+        </div>
+
+        <!-- RIGHT: Tab + Content -->
+        <div class="col-lg-9 d-flex flex-column gap-4">
+
+            <!-- Grades card -->
+            <div class="sms-card">
+                <div class="sms-tabs">
+                    <div class="sms-tab">Personal Info</div>
+                </div>
+
+            <!-- Personal Info Tab -->
+            <div class="fade-in" style="padding: 24px;">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <p
+                            style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                            Address</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{ student.address }}, {{student.city}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p
+                            style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                            Gender</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{ student.gender }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p
+                            style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                            Age</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{ student.age
+                            }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p
+                            style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                            Country</p>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{ student.country }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        
+
+        </div>
+    </div>
+</div>

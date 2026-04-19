@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentsService } from 'src/app/services/students.service';
 
 @Component({
@@ -12,13 +12,26 @@ export class StudentDetailsComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private _studentsService: StudentsService
-  ) {}
+  ) { }
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.student = this._studentsService.getStudentByID(id);
+    //console.log(this.student);
+
+    if (!this.student) {
+      this.router.navigate(['/students']);
+    }
   }
 
+  onDelete() {
+    this._studentsService.deleteStudent(this.student.id);
+    this.router.navigate(['/students']);
+  }
+
+  
 }
+
