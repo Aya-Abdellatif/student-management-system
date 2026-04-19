@@ -1,1 +1,36 @@
-<app-student-table [students]="(students$ | async) || []" (delete)="deleteStudent($event)"></app-student-table>
+<!-- students.component.html -->
+<div class="page-wrapper fade-in-up">
+
+    <div class="sms-card">
+
+        <!-- Header -->
+        <div class="card-header-bar">
+            <div>
+                <p class="card-title">All Students</p>
+                <p class="text-muted-sms" style="font-size: 13px; margin: 2px 0 0;">
+                    1 students total
+                </p>
+            </div>
+
+            <div class="d-flex gap-3 align-items-center flex-wrap">
+                <!-- Search -->
+                <div class="search-wrapper">
+                    <input class="search-input ps-3" type="text" placeholder="Search by name or ID..." />
+                </div>
+            </div>
+
+             <!-- Filter by status -->
+        <select class="form-select" style="width: auto; font-size: 13.5px; padding: 8px 14px;
+                border-radius: 8px; border: 1.5px solid var(--border-color);
+                background: var(--bg-input); color: var(--text-primary); cursor: pointer;">
+          <option value="">All Status</option>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+          <option value="Pending">Pending</option>
+        </select>
+        </div>
+
+        <app-student-table [students]="(students$ | async) || []" (delete)="deleteStudent($event)"></app-student-table>
+    </div>
+
+</div>
