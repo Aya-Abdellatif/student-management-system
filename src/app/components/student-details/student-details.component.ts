@@ -40,7 +40,8 @@ export class StudentDetailsComponent {
 
   onSave(){
     this._studentsService.editStudent(this.student);
-    this.router.navigate(['./student/:id']);
+    this.router.navigate([`./student/${this.student.id}`]);
+    this.isEdit=false;
   }
 }
 
