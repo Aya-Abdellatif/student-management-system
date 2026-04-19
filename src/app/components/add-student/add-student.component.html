@@ -114,8 +114,12 @@
                         <select class="form-select"        [(ngModel)]="newStudent.isActive" name="isActive">
                             <option value="true">Active</option>
                             <option value="false">Inactive</option>
-                            <option value="Pending">Pending Review</option>
                         </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">GPA</label>
+                        <input type="text" class="form-control"        [(ngModel)]="newStudent.GPA" name="gpa">
                     </div>
 
                 </div>
