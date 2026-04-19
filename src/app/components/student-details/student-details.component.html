@@ -7,12 +7,11 @@
             <div>
                 <h2 class="font-heading mb-0" style="font-size: 20px; font-weight: 700;">{{student.firstName}} Profile
                 </h2>
-                <p class="text-muted-sms mb-0" style="font-size: 13px;">Detailed view and academic record</p>
+                <p class="text-muted-sms mb-0" style="font-size: 13px;">Detailed view</p>
             </div>
         </div>
         <div class="d-flex gap-2">
-            <button class="btn-sms-outline" [routerLink]="['/edit-student', student.id]"
-                style="font-size: 13px; padding: 8px 16px;">
+            <button class="btn-sms-outline" style="font-size: 13px; padding: 8px 16px;" (click)="onUpdate()">
                 📝 Edit
             </button>
             <button class="btn-sms-danger" style="font-size: 13px; padding: 8px 16px;" (click)="onDelete()">
@@ -20,6 +19,7 @@
             </button>
         </div>
     </div>
+
 
     <!-- Two-column layout -->
     <div class="row g-4" style="--bs-gutter-x: 20px;">
@@ -31,14 +31,28 @@
                 <!-- Avatar -->
                 <div class="profile-avatar-xl"> {{ student.firstName.charAt(0) }} {{ student.lastName.charAt(0) }}
                 </div>
-                <p class="profile-name">{{ student.firstName }} {{ student.lastName }}</p>
-                <p class="profile-sub">{{ student.course }} · Year {{ student.level }}</p>
+                <p class="profile-name" *ngIf="!isEdit">{{ student.firstName }} {{ student.lastName }}</p>
+                <!-- EDIT -->
+                <div *ngIf="isEdit" class="profile-name d-flex gap-2 w-50 mx-auto mb-3">
+                    <input class="form-control" [(ngModel)]="student.firstName" name="firstName">
+
+                    <input class="form-control" [(ngModel)]="student.lastName" name="lastName">
+                </div>
+
+
+                <p class="profile-sub">{{ student.department }} · Year {{ student.level }}</p>
+
+
                 <span class="sms-badge" [ngClass]="{
                 'badge-active':   student.isActive === true,
                 'badge-inactive': student.isActive === false,
-              }">
+              }" *ngIf="!isEdit">
                     {{ student.isActive ? 'Active' : 'Inactive' }}
                 </span>
+                <select [(ngModel)]="student.isActive" name="isActive" class="form-select w-50 mx-auto" *ngIf="isEdit">
+                    <option [ngValue]="true">Active</option>
+                    <option [ngValue]="false">Inactive</option>
+                </select>
 
                 <div class="profile-divider"></div>
 
@@ -49,21 +63,23 @@
                 </div>
                 <div class="profile-row">
                     <span class="profile-row-label">GPA</span>
-                    <span class="profile-row-val fw-700 text-primary-color">{{ student.GPA }}</span>
+                    <span class="profile-row-val fw-700 " *ngIf="!isEdit">{{ student.GPA }}</span>
+                    <input class="form-control profile-row-val ms-4" [(ngModel)]="student.GPA" name="gpa"
+                        *ngIf="isEdit">
+
                 </div>
                 <div class="profile-row">
                     <span class="profile-row-label">Enrolled</span>
                     <span class="profile-row-val">{{ student.enrollmentDate }}</span>
                 </div>
-                <div class="profile-row">
-                    <span class="profile-row-label">
-                        Age
-                    </span>
-                    <span class="profile-row-val">{{ student.age }}</span>
-                </div>
+
                 <div class="profile-row">
                     <span class="profile-row-label">Phone</span>
-                    <span class="profile-row-val">{{ student.phone }}</span>
+                    <span class="profile-row-val" *ngIf="!isEdit">{{ student.phone }}</span>
+                    <input class="form-control profile-row-val ms-4" [(ngModel)]="student.phone" name="phone"
+                        *ngIf="isEdit">
+
+
                 </div>
 
                 <div class="profile-divider"></div>
@@ -71,10 +87,12 @@
                 <div class="profile-row">
                     <span class="profile-row-label">Email</span>
                 </div>
-                <p
-                    style="font-size: 12.5px; color: var(--primary); word-break: break-all; text-align: left; margin: 2px 0 0;">
+                <p style="font-size: 12.5px; color: var(--primary); word-break: break-all; text-align: left; margin: 2px 0 0;"
+                    *ngIf="!isEdit">
                     {{ student.email }}
                 </p>
+                <input *ngIf="isEdit" type="email" type="text" class="form-control" [(ngModel)]="student.email"
+                    name="email">
 
             </div>
         </div>
@@ -88,41 +106,55 @@
                     <div class="sms-tab">Personal Info</div>
                 </div>
 
-            <!-- Personal Info Tab -->
-            <div class="fade-in" style="padding: 24px;">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <p
-                            style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
-                            Address</p>
-                        <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{ student.address }}, {{student.city}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p
-                            style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
-                            Gender</p>
-                        <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{ student.gender }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p
-                            style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
-                            Age</p>
-                        <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{ student.age
-                            }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p
-                            style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
-                            Country</p>
-                        <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{ student.country }}
-                        </p>
+                <!-- Personal Info Tab -->
+                <div class="fade-in" style="padding: 24px;">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <p
+                                style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Address</p>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;" *ngIf="!isEdit">{{
+                                student.address }},
+                                {{student.city}}</p>
+                            <div *ngIf="isEdit" class="d-flex gap-2">
+                                <input class="form-control" [(ngModel)]="student.address" name="address">
+
+                                <input class="form-control" [(ngModel)]="student.city" name="city">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p
+                                style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Gender</p>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">{{
+                                student.gender }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p
+                                style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Age</p>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;" *ngIf="!isEdit">{{
+                                student.age
+                                }}</p>
+                            <input class="form-control" [(ngModel)]="student.age" name="age" *ngIf="isEdit">
+
+                        </div>
+                        <div class="col-md-6">
+                            <p
+                                style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Country</p>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;" *ngIF="!isEdit">{{
+                                student.country }}></p>
+                            <input class="form-control" [(ngModel)]="student.country" name="country" *ngIf="isEdit">
+
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-        </div>
 
-        
 
         </div>
     </div>

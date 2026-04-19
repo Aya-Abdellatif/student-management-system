@@ -9,6 +9,7 @@ import { StudentsService } from 'src/app/services/students.service';
 })
 export class StudentDetailsComponent {
   student: any;
+  isEdit: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +23,7 @@ export class StudentDetailsComponent {
     this.student = this._studentsService.getStudentByID(id);
     //console.log(this.student);
 
+    this.isEdit = false;
     if (!this.student) {
       this.router.navigate(['/students']);
     }
@@ -32,6 +34,13 @@ export class StudentDetailsComponent {
     this.router.navigate(['/students']);
   }
 
-  
+  onUpdate(){
+    this.isEdit = true;
+  }
+
+  onSave(){
+    this._studentsService.editStudent(this.student);
+    this.router.navigate(['./student/:id']);
+  }
 }
 
