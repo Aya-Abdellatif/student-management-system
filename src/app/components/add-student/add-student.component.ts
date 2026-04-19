@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StudentsService } from 'src/app/services/students.service';
 
 @Component({
   selector: 'app-add-student',
@@ -7,6 +8,50 @@ import { Component } from '@angular/core';
 })
 export class AddStudentComponent {
 
-  newStudent={}
+  constructor(private _studentsService: StudentsService) { }
 
+  newStudent = {
+    firstName: '',
+    lastName: '',
+    age: 0,
+    gender: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    country: '',
+    department: '',
+    level: 1,
+    GPA: 0,
+    enrollmentDate: '',
+    isActive: true
+
+  };
+
+  addStudent() {
+    this._studentsService.addStudent(this.newStudent);
+
+    this.reset();
+  }
+
+  reset() {
+    this.newStudent = {
+      firstName: '',
+      lastName: '',
+      age: 0,
+      gender: '',
+      email: '',
+      phone: '',
+      address: '',
+      city: '',
+      country: '',
+      department: '',
+      level: 1,
+      GPA: 0,
+      enrollmentDate: '',
+      isActive: true
+
+    };
+
+  }
 }

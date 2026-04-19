@@ -11,6 +11,8 @@ import { AddStudentComponent } from './components/add-student/add-student.compon
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { ErrorComponent } from './components/error/error.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { ErrorComponent } from './components/error/error.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
