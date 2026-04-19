@@ -1,1 +1,57 @@
-<p>student-table works!</p>
+<div class="table-responsive">
+    <table class="sms-table">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>ID</th>
+                <th>Department</th>
+                <th>Level</th>
+                <th>GPA</th>
+                <th>Enrollment Date</th>
+                <th>Status</th>
+                <th style="text-align: center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of students" [routerLink]="['/student', student.id]" class="fade-in">
+                <td>
+                    <div class="d-flex align-items-center">
+                        <div class="student-avatar" [style.background]="student.avatarGradient">
+                            {{ student.firstName.charAt(0) }} {{ student.lastName.charAt(0) }}
+
+                        </div>
+                        <div>
+                            <div class="student-name">{{ student.firstName }} {{student.lastName}}</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">{{ student.email }}</div>
+                        </div>
+                    </div>
+                </td>
+                <td style="color: var(--text-muted); font-size: 13px;">{{ student.id }}</td>
+                <td>{{ student.department }}</td>
+                <td>{{ student.level }}</td>
+                <td>{{ student.GPA }}</td>
+                <td style="color: var(--text-muted); font-size: 13px;">{{ student.enrollmentDate }}</td>
+                <td> <span *ngIf="student.isActive === true">Active</span>
+                </td>
+                <td (click)="$event.stopPropagation()">
+                    <div class="d-flex gap-2">
+                        <button class="btn-icon-sm btn-icon-view" [routerLink]="['/student', student.id]"
+                            title="View details">👁</button>
+                        <button class="btn-icon-sm btn-icon-view" [routerLink]="['/edit-student', student.id]"
+                            title="Edit">📝</button>
+                        <button class="btn-icon-sm btn-icon-view">🗑</button>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Empty state -->
+            <tr *ngIf="students.length === 0">
+                <td colspan="8" class="text-center" style="padding: 48px 20px; color: var(--text-muted);">
+                    <div style="font-size: 36px; margin-bottom: 12px;">🎓</div>
+                    <p style="font-weight: 600; color: var(--text-secondary); margin: 0 0 4px;">No students found</p>
+                    <p style="font-size: 13px; margin: 0;">Try adjusting your search or filter criteria</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
