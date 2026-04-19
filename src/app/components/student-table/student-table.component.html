@@ -32,6 +32,7 @@
                 <td>{{ student.GPA }}</td>
                 <td style="color: var(--text-muted); font-size: 13px;">{{ student.enrollmentDate }}</td>
                 <td> <span *ngIf="student.isActive === true">Active</span>
+                    <span *ngIf="student.isActive === false">Inactive</span>
                 </td>
                 <td (click)="$event.stopPropagation()">
                     <div class="d-flex gap-2">
