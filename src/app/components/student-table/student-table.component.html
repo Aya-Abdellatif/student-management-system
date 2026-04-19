@@ -39,7 +39,7 @@
                             title="View details">👁</button>
                         <button class="btn-icon-sm btn-icon-view" [routerLink]="['/edit-student', student.id]"
                             title="Edit">📝</button>
-                        <button class="btn-icon-sm btn-icon-view">🗑</button>
+                        <button class="btn-icon-sm btn-icon-view" (click)="onDelete(student.id)">🗑</button>
                     </div>
                 </td>
             </tr>

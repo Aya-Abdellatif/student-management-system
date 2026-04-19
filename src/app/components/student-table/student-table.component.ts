@@ -6,10 +6,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./student-table.component.css']
 })
 export class StudentTableComponent {
-  @Input() students:any[] = [];
-  /*@Output() delete = new EventEmitter<number>();
+  @Input() students: any[] = [];
 
-  onDelete(id: number){
+  @Output() delete = new EventEmitter<number>();
+  onDelete(id: number) {
     this.delete.emit(id);
-  }*/
+  }
 }
