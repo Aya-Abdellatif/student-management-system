@@ -147,7 +147,7 @@
                             <p
                                 style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
                                 Country</p>
-                            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;" *ngIF="!isEdit">{{
+                            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;" *ngIf="!isEdit">{{
                                 student.country }}></p>
                             <input class="form-control" [(ngModel)]="student.country" name="country" *ngIf="isEdit">
 
