@@ -15,19 +15,24 @@
             <div class="d-flex gap-3 align-items-center flex-wrap">
                 <!-- Search -->
                 <div class="search-wrapper">
-                    <input class="search-input ps-3" type="text" placeholder="Search by name or ID..." />
+                    <input class="search-input ps-3" type="text" placeholder="Search by name or"
+                        [(ngModel)]="searchName" (input)="applyFilter()" />
                 </div>
             </div>
 
-             <!-- Filter by status -->
-        <select class="form-select" style="width: auto; font-size: 13.5px; padding: 8px 14px;
+            <!-- Filter by status -->
+            <select class="form-select" style="width: auto; font-size: 13.5px; padding: 8px 14px;
                 border-radius: 8px; border: 1.5px solid var(--border-color);
-                background: var(--bg-input); color: var(--text-primary); cursor: pointer;">
-          <option value="">All Status</option>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-          <option value="Pending">Pending</option>
-        </select>
+                background: var(--bg-input); color: var(--text-primary); cursor: pointer;" [(ngModel)]="selectedDepartment" (change)="applyFilter()">
+                <option value="">All</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Mechatronics">Mechatronics</option>
+                <option value="Industrial">Industrial</option>
+                <option value="Petrolchemicals">Petrolchemicals</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Architectural">Architectural</option>
+            </select>
         </div>
 
         <app-student-table [students]="(students$ | async) || []" (delete)="deleteStudent($event)"></app-student-table>
