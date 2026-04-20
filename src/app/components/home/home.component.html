@@ -3,23 +3,14 @@
 
   <!-- Hero -->
   <div class="hero-section fade-in-up">
-    <h1>Welcome, Admin</h1>
+    <h1>Welcome</h1>
     <p>
-      Manage your students, track academic performance, and keep your
+      Manage your students, and keep your
       institution organized — all in one beautiful dashboard.
     </p>
     <button class="hero-btn" routerLink="/students">
       View All Students <span>→</span>
     </button>
-  </div>
-
-  <!-- Stats -->
-  <div class="stats-grid stagger">
-    <!--<div class="stat-card fade-in-up" *ngFor="let stat of stats">
-      <div class="stat-icon {{ stat.colorClass }}">{{ stat.icon }}</div>
-      <p class="stat-num">{{ stat.value }}</p>
-      <p class="stat-label">{{ stat.label }}</p>
-    </div>-->
   </div>
 
   <!-- Recent Students -->
@@ -35,16 +26,27 @@
       <table class="sms-table">
         <thead>
           <tr>
-            <th>Student</th>
-            <th>Course</th>
+            <th>ID</th>
+            <th>Student Fullname</th>
+            <th>Department</th>
             <th>Year</th>
             <th>GPA</th>
-            <th>Status</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-         
+          <tr *ngFor="let student of students$ | async" [routerLink]="['/student', student.id]" class="fade-in">
+            <td style="color: var(--text-muted); font-size: 13px;">
+              {{ student.id }}
+            </td>
+            <td class="student-name">
+              {{ student.firstName }} {{student.lastName}}
+            </td>
+            <td>
+              {{student.department}}
+            </td>
+            <td>{{student.level}}</td>
+            <td>{{student.GPA}}</td>
+          </tr>
         </tbody>
       </table>
     </div>
