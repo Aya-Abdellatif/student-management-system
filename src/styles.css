@@ -1034,3 +1034,18 @@ h6 {
     margin-bottom: 4px;
   }
 }
+
+.styleClass{
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+.styleClass:focus {
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
+}
+
+.styleClass::placeholder {
+  color: var(--text-muted);
+}

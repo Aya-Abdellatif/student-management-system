@@ -11,10 +11,12 @@
             </div>
         </div>
         <div class="d-flex gap-2">
-            <button class="btn-sms-outline" style="font-size: 13px; padding: 8px 16px;" (click)="onUpdate()" *ngIf="!isEdit">
+            <button class="btn-sms-outline" style="font-size: 13px; padding: 8px 16px;" (click)="onUpdate()"
+                *ngIf="!isEdit">
                 Edit
             </button>
-            <button class="btn-sms-outline" style="font-size: 13px; padding: 8px 16px;" (click)="onSave()" *ngIf="isEdit">
+            <button class="btn-sms-outline" style="font-size: 13px; padding: 8px 16px;" (click)="onSave()"
+                *ngIf="isEdit">
                 Save
             </button>
             <button class="btn-sms-danger" style="font-size: 13px; padding: 8px 16px;" (click)="onDelete()">
@@ -29,22 +31,36 @@
 
         <!-- LEFT: Profile sidebar -->
         <div class="col-lg-3">
-            <div class="profile-card">
+            <div class="profile-card form-section">
 
                 <!-- Avatar -->
                 <div class="profile-avatar-xl"> {{ student.firstName.charAt(0) }} {{ student.lastName.charAt(0) }}
                 </div>
                 <p class="profile-name" *ngIf="!isEdit">{{ student.firstName }} {{ student.lastName }}</p>
                 <!-- EDIT -->
-                <div *ngIf="isEdit" class="profile-name d-flex gap-2 w-50 mx-auto mb-3">
+                <div *ngIf="isEdit" class="profile-name d-flex gap-2 mx-auto mb-3">
                     <input class="form-control" [(ngModel)]="student.firstName" name="firstName">
 
                     <input class="form-control" [(ngModel)]="student.lastName" name="lastName">
                 </div>
 
+                <!-- Department and Year-->
+                <p class="profile-sub" *ngIf="!isEdit">{{ student.department }} · Year {{ student.level }}</p>
 
-                <p class="profile-sub">{{ student.department }} · Year {{ student.level }}</p>
+                <div *ngIf="isEdit" class="profile-name d-flex gap-2 mx-auto mb-3">
+                    <select [(ngModel)]="student.department" name="department" class="form-select mx-auto"
+                        *ngIf="isEdit">
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Electrical">Electrical</option>
+                        <option value="Mechatronics">Mechatronics</option>
+                        <option value="Industrial">Industrial</option>
+                        <option value="Petrolchemicals">Petrolchemicals</option>
+                        <option value="Mechanical">Mechanical</option>
+                        <option value="Architectural">Architectural</option>
+                    </select>
 
+                    <input class="form-control" [(ngModel)]="student.level" name="level">
+                </div>
 
                 <span class="sms-badge" [ngClass]="{
                 'badge-active':   student.isActive === true,
@@ -65,22 +81,23 @@
                     <span class="profile-row-val">{{ student.id }}</span>
                 </div>
                 <div class="profile-row">
-                    <span class="profile-row-label">GPA</span>
+                    <span class="profile-row-label"> GPA / 4</span>
                     <span class="profile-row-val fw-700 " *ngIf="!isEdit">{{ student.GPA }}</span>
-                    <input class="form-control profile-row-val ms-4" [(ngModel)]="student.GPA" name="gpa"
-                        *ngIf="isEdit">
+                    <input class="form-control ms-5" [(ngModel)]="student.GPA" name="gpa" *ngIf="isEdit">
 
                 </div>
+                <!-- Enrollment Date -->
                 <div class="profile-row">
                     <span class="profile-row-label">Enrolled</span>
-                    <span class="profile-row-val">{{ student.enrollmentDate }}</span>
+                    <span class="profile-row-val" *ngIf="!isEdit">{{ student.enrollmentDate }}</span>
+                    <input type="date" class="form-control ms-3" [(ngModel)]="student.enrollmentDate" name="enrollmentDate"
+                        *ngIf="isEdit">
                 </div>
 
                 <div class="profile-row">
                     <span class="profile-row-label">Phone</span>
                     <span class="profile-row-val" *ngIf="!isEdit">{{ student.phone }}</span>
-                    <input class="form-control profile-row-val ms-4" [(ngModel)]="student.phone" name="phone"
-                        *ngIf="isEdit">
+                    <input class="form-control ms-4" [(ngModel)]="student.phone" name="phone" *ngIf="isEdit">
 
 
                 </div>
@@ -156,8 +173,6 @@
                 </div>
 
             </div>
-
-
 
         </div>
     </div>
