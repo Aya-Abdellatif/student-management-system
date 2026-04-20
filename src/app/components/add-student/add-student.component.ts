@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { StudentsService } from 'src/app/services/students.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-add-student',
@@ -8,7 +10,8 @@ import { StudentsService } from 'src/app/services/students.service';
 })
 export class AddStudentComponent {
 
-  constructor(private _studentsService: StudentsService) { }
+  constructor(private _studentsService: StudentsService, private router: Router,
+  ) { }
 
   newStudent = {
     firstName: '',
@@ -30,8 +33,10 @@ export class AddStudentComponent {
 
   addStudent() {
     this._studentsService.addStudent(this.newStudent);
-
     this.reset();
+
+    this.router.navigate(["./students"]);
+
   }
 
   reset() {
