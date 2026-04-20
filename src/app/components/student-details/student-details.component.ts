@@ -23,9 +23,9 @@ export class StudentDetailsComponent {
     this.student = this._studentsService.getStudentByID(id);
     //console.log(this.student);
 
-    const mode = this.route.snapshot.paramMap.get('mode');
-    console.log(mode);
-    
+    const mode = this.route.snapshot.queryParamMap.get('mode');
+    //console.log("Mode is", mode);
+
     this.isEdit = mode === 'edit';
 
     if (!this.student) {
