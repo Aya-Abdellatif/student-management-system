@@ -23,7 +23,11 @@ export class StudentDetailsComponent {
     this.student = this._studentsService.getStudentByID(id);
     //console.log(this.student);
 
-    this.isEdit = false;
+    const mode = this.route.snapshot.paramMap.get('mode');
+    console.log(mode);
+    
+    this.isEdit = mode === 'edit';
+
     if (!this.student) {
       this.router.navigate(['/students']);
     }

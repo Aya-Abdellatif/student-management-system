@@ -38,9 +38,10 @@
                     <div class="d-flex gap-2">
                         <button class="btn-icon-sm btn-icon-view" [routerLink]="['/student', student.id]"
                             title="View details">👁</button>
-                        <button class="btn-icon-sm btn-icon-view" [routerLink]="['/edit-student', student.id]"
-                            title="Edit">📝</button>
-                        <button class="btn-icon-sm btn-icon-view" (click)="onDelete(student.id)">🗑</button>
+                        <button class="btn-icon-sm btn-icon-view" [routerLink]="['/student', student.id]"
+                            [queryParams]="{mode: 'edit'}" title="Edit">📝</button>
+                        <button class="btn-icon-sm btn-icon-view" title="Delete"
+                            (click)="onDelete(student.id)">🗑</button>
                     </div>
                 </td>
             </tr>
@@ -48,7 +49,6 @@
             <!-- Empty state -->
             <tr *ngIf="students.length === 0">
                 <td colspan="8" class="text-center" style="padding: 48px 20px; color: var(--text-muted);">
-                    <div style="font-size: 36px; margin-bottom: 12px;">🎓</div>
                     <p style="font-weight: 600; color: var(--text-secondary); margin: 0 0 4px;">No students found</p>
                     <p style="font-size: 13px; margin: 0;">Try adjusting your search or filter criteria</p>
                 </td>
